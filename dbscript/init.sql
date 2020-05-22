@@ -45,18 +45,20 @@ CREATE TABLE `reservation`
 DROP TABLE IF EXISTS `user_details`;
 CREATE TABLE `user_details`
 (
-    `id`           BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `sex`          VARCHAR(255),
-    `age`          INT,
-    `phone_number` BIGINT
+    `id`          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `first_name`  VARCHAR(255),
+    `second_name` VARCHAR(255),
+    `sex`         VARCHAR(255),
+    `age`         INT
 );
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
     `id`                    BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `first_name`            VARCHAR(255) NOT NULL,
-    `second_name`           VARCHAR(255) NOT NULL,
+    `phone_number`          VARCHAR(20)  NOT NULL,
+    `password`              VARCHAR(255) NOT NULL,
+    `role`                  VARCHAR(255) NOT NULL,
     `reservation_id`        BIGINT,
     `user_details_id`       BIGINT,
     `passport_number`       VARCHAR(9),

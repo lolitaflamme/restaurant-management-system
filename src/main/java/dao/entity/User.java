@@ -1,8 +1,10 @@
 package dao.entity;
 
 import lombok.Data;
+import web.validator.PhoneNumberConstraint;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -10,11 +12,19 @@ import java.util.List;
 @Data
 public class User extends BaseEntity {
 
-    @Column(name = "first_name")
-    private String firstName;
+    @NotEmpty
+    @PhoneNumberConstraint
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "second_name")
-    private String secondName;
+    @NotEmpty
+    @Column
+    private String password;
+
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;

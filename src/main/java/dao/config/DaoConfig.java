@@ -14,13 +14,13 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("dao")
+@ComponentScan(basePackages = {"dao"})
 public class DaoConfig {
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/restaurants");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/restaurant_management_system?allowPublicKeyRetrieval=true&serverTimezone=UTC");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("root");
         dataSource.setPassword("1111");
