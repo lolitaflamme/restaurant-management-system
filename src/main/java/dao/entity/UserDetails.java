@@ -13,12 +13,7 @@ public class UserDetails extends BaseEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Sex sex;
-
-    @Min(18)
-    @Max(100)
-    @Column
-    private int age;
+    private Gender gender;
 
     @Column(name = "first_name")
     private String firstName;

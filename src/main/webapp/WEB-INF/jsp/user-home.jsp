@@ -5,6 +5,6 @@
 </head>
 <body>
 <p>Restaurant management system</p>
-<a href="${pageContext.request.contextPath}/user/additionalInformation">Fill in my profile</a>
+<a href="user/additional-information">Fill in my profile</a>
 </body>
 </html>

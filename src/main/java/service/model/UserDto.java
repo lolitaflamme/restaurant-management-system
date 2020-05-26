@@ -1,17 +1,12 @@
 package service.model;
 
-import dao.entity.Reservation;
-import dao.entity.Role;
-import dao.entity.Sex;
-import dao.entity.UserDetails;
+import dao.entity.Gender;
 import lombok.Data;
 import web.validator.PhoneNumberConstraint;
 
-import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 @Data
 public class UserDto {
@@ -30,7 +25,7 @@ public class UserDto {
 
     private String secondName;
 
-    private Sex sex;
+    private Gender gender;
 
     @Min(18)
     @Max(100)

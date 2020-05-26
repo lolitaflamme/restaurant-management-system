@@ -45,11 +45,10 @@ CREATE TABLE `reservation`
 DROP TABLE IF EXISTS `user_details`;
 CREATE TABLE `user_details`
 (
-    `id`          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id`          BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `first_name`  VARCHAR(255),
     `second_name` VARCHAR(255),
-    `sex`         VARCHAR(255),
-    `age`         INT
+    `gender`      VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS `user`;
@@ -58,6 +57,7 @@ CREATE TABLE `user`
     `id`                    BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `phone_number`          VARCHAR(20)  NOT NULL,
     `password`              VARCHAR(255) NOT NULL,
+    `age`                   INTEGER      NOT NULL,
     `role`                  VARCHAR(255) NOT NULL,
     `reservation_id`        BIGINT,
     `user_details_id`       BIGINT,
@@ -69,3 +69,48 @@ CREATE TABLE `user`
 
 ALTER TABLE `reservation`
     ADD CONSTRAINT `fk_reservation_to_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+INSERT INTO restaurant (id, name)
+VALUES (1, 'Victoria');
+INSERT INTO place (id, city, street, building_number)
+VALUES (1, 'Minsk', 'Kiseleva', 23);
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (1, 1, 1);
+
+INSERT INTO restaurant (id, name)
+VALUES (2, 'Berezka');
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (2, 2, 1);
+
+INSERT INTO restaurant (id, name)
+VALUES (3, 'Belarus');
+INSERT INTO place (id, city, street, building_number)
+VALUES (2, 'Minsk', 'Macherova', 44);
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (3, 3, 2);
+
+INSERT INTO place (id, city, street, building_number)
+VALUES (3, 'Minsk', 'Pobediteley', 6);
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (4, 3, 3);
+
+INSERT INTO restaurant (id, name)
+VALUES (4, 'Flower');
+INSERT INTO place (id, city, street, building_number)
+VALUES (4, 'Minsk', 'Zaharova', 67);
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (5, 4, 4);
+
+INSERT INTO restaurant (id, name)
+VALUES (5, 'Art');
+INSERT INTO place (id, city, street, building_number)
+VALUES (5, 'Minsk', 'Kozlova', 3);
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (6, 5, 5);
+
+INSERT INTO restaurant (id, name)
+VALUES (6, 'Valery');
+INSERT INTO place (id, city, street, building_number)
+VALUES (6, 'Minsk', 'Horugey', 32);
+INSERT INTO restaurant_place (id, fk_restaurant_id, fk_place_id)
+VALUES (7, 6, 6);

@@ -18,9 +18,9 @@
 <div>
     <span><fmt:message key="label.content" /></span>
 </div>
-<a href="${pageContext.request.contextPath}/signUp"><fmt:message key="label.button.signup"/></a>
+<a href="sign-up"><fmt:message key="label.button.signup"/></a>
 <br>
-<a href="${pageContext.request.contextPath}/signIn"><fmt:message key="label.button.signin"/></a>
+<a href="sign-in"><fmt:message key="label.button.signin"/></a>
 <br>
 </body>
 </html>

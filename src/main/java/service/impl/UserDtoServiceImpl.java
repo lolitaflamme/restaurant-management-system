@@ -11,7 +11,6 @@ import service.api.UserDtoService;
 import service.model.UserDto;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +25,7 @@ public class UserDtoServiceImpl implements UserDtoService {
         User user = new User();
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setPassword(/*passwordEncoder.encode*/(userDto.getPassword()));
+        user.setAge(userDto.getAge());
         user.setRole(Role.USER);
         userRepository.saveUser(user);
     }
@@ -39,8 +39,7 @@ public class UserDtoServiceImpl implements UserDtoService {
         UserDetails userDetails = new UserDetails();
         userDetails.setFirstName(userDto.getFirstName());
         userDetails.setSecondName(userDto.getSecondName());
-        userDetails.setSex(userDto.getSex());
-        userDetails.setAge(userDto.getAge());
+        userDetails.setGender(userDto.getGender());
         userRepository.saveUserDetails(userDetails);
     }
 }

@@ -6,10 +6,10 @@
 <body>
 <p>Sign in</p>
 <br>
-<form action="${pageContext.request.contextPath}/user/home" method="post">
-    Phone number:<input type="text" name="phoneNumber">
-    Password:<input type="text" name="password">
-    <input type="submit" value="Submit">
+<form method="POST" action="user/home">
+    <p>Phone number: <input name="phoneNumber" required></p>
+    <p>Password: <input type="password" name="password" required></p>
+    <p><input type="submit" value="Submit"></p>
 </form>
 </body>
 </html>

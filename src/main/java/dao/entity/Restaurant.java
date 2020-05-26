@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "restaurant")
 @Data
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY, region = "my-cache")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "my-cache")
 public class Restaurant extends BaseEntity {
 
     @Column

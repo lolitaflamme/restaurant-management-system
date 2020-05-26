@@ -4,6 +4,8 @@ import dao.entity.PassportData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,10 +13,11 @@ import service.api.UserDtoService;
 import service.model.UserDto;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class SignUpAndSignInController {
+public class UserController {
 
     private final UserDtoService userDtoService;
 
@@ -29,18 +32,23 @@ public class SignUpAndSignInController {
     }
 
     @ModelAttribute()
-    @GetMapping("/signUp")
+    @GetMapping("/sign-up")
     public String getSignUpForm() {
         return "sign-up";
     }
 
-    @PostMapping("/signUp")
-    public String createUser(@Valid UserDto userDto) {
+    @PostMapping("/sign-up")
+    public String createUser(@Valid UserDto userDto, BindingResult result) {
         userDtoService.createUser(userDto);
-        return "sign-up";
+        List<FieldError> fieldErrors = result.getFieldErrors();
+        if (fieldErrors.isEmpty()) {
+            return "redirect:sign-in";
+        } else {
+            return fieldErrors.toString();
+        }
     }
 
-    @GetMapping("/signIn")
+    @GetMapping("/sign-in")
     public String getSignInForm() {
         return "sign-in";
     }
@@ -51,12 +59,12 @@ public class SignUpAndSignInController {
     }
 
     @ModelAttribute()
-    @GetMapping("/user/additionalInformation")
+    @GetMapping("/user/additional-information")
     public String getAdditionalInformationForm() {
         return "user-additional-information";
     }
 
-    @PostMapping("/user/additionalInformation")
+    @PostMapping("/user/additional-information")
     public String updateUser(@Valid UserDto userDto) {
         userDtoService.updateUser(userDto);
         return "user-additional-information";

@@ -7,10 +7,11 @@
 <body>
 <p>Sign up</p>
 <br>
-<form method="POST" action="${pageContext.request.contextPath}/signUp" modelAttribute="userDto">
-    Phone number:<input type="text" name="phoneNumber">
-    Password:<input type="text" name="password">
-    <input type="submit" value="Submit"/>
+<form method="POST" action="sign-up" modelAttribute="userDto">
+    <p>Phone number: <input name="phoneNumber" required></p>
+    <p>Password: <input type="password" name="password" required></p>
+    <p>Age: <input name="age" required></p>
+    <p><input type="submit" value="Submit"></p>
 </form>
 </body>
 </html>
