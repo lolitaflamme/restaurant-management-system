@@ -23,7 +23,6 @@ public class User extends BaseEntity {
     @Column
     private String password;
 
-
     @Min(18)
     @Max(100)
     @Column

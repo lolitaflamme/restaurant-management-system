@@ -6,8 +6,8 @@
 <body>
 <p>Sign in</p>
 <br>
-<form method="POST" action="user/home">
-    <p>Phone number: <input name="phoneNumber" required></p>
+<form method="POST" action="sign-in">
+    <p>Phone number: <input name="username" required></p>
     <p>Password: <input type="password" name="password" required></p>
     <p><input type="submit" value="Submit"></p>
 </form>

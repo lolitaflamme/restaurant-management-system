@@ -13,5 +13,5 @@ public interface UserRepository {
 
     UserDetails saveUserDetails (UserDetails userDetails);
 
-    PassportData savePassportData (PassportData passportData);
+    String getCurrentUserName ();
 }

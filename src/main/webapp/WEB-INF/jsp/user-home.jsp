@@ -5,6 +5,11 @@
 </head>
 <body>
 <p>Restaurant management system</p>
-<a href="user/additional-information">Fill in my profile</a>
+<a href="user-additional-information">Fill in my profile</a>
+<br>
+<a href="reservation">Reserve a restaurant</a>
+<br>
+<a href="logout">Log out</a>
+<br>
 </body>
 </html>

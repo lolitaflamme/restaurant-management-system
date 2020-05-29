@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-/*@Configuration
+@Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,25 +22,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/resources/**")
+                .antMatchers("/resources/**", "/", "/welcome", "/sign-up", "/sign-in")
                 .permitAll()
-                .antMatchers("/admin/**")
+                .antMatchers("/admin-home")
                 .hasAuthority("ADMIN")
-                .antMatchers("/user/**")
+                .antMatchers("/reservation", "/user-home", "/user-additional-information")
                 .hasAnyAuthority("USER", "ADMIN")
                 .anyRequest()
                 .authenticated()
 
                 .and()
                 .formLogin()
-                .loginPage("/signIn")
-                .loginProcessingUrl("/signIn")
-                .defaultSuccessUrl("/home")
+                .loginPage("/sign-in")
+                .loginProcessingUrl("/sign-in")
+                .defaultSuccessUrl("/user-home")
 
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/signIn")
+                .logoutSuccessUrl("/sign-in")
 
                 .and()
                 .csrf().disable();
@@ -58,4 +58,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
-}*/
+}

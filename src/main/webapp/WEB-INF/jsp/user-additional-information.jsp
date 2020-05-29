@@ -7,7 +7,7 @@
 <body>
 <p>Additional information:</p>
 <br>
-    <form method="POST" action="additional-information" modelAttribute="userDto">
+    <form method="POST" action="user-additional-information" modelAttribute="userDto">
     <p>Passport number: <input name="passportNumber"></p>
     <p>Identification number: <input name="identificationNumber"></p>
     <p>First name: <input name="firstName"></p>

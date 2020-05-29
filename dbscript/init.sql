@@ -33,9 +33,9 @@ CREATE TABLE `restaurant_place`
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation`
 (
-    `id`                    BIGINT   NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id`                    BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `restaurant_id`         BIGINT,
-    `date_and_time`         DATETIME NOT NULL,
+    `date`                  DATE   NOT NULL,
     `user_id`               BIGINT,
     `passport_number`       VARCHAR(9),
     `identification_number` VARCHAR(14),

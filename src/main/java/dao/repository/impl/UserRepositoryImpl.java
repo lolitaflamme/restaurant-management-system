@@ -6,6 +6,9 @@ import dao.entity.UserDetails;
 import dao.repository.api.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.SessionFactory;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
@@ -38,10 +41,11 @@ public class UserRepositoryImpl implements UserRepository {
         return userDetails;
     }
 
+
     @Override
-    public PassportData savePassportData(PassportData passportData) {
-        sessionFactory.getCurrentSession()
-                .save(passportData);
-        return passportData;
+    public String getCurrentUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = authentication.getName();
+            return currentUserName;
     }
 }

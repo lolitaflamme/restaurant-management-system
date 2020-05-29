@@ -1,22 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Reservation</title>
 </head>
 <body>
-<form method="post" action="reservation" modelAttribure="reservationDto">
-    <p><b>Choose the restaurant</b></p>
-    <p><input name="restaurant" type="radio" value="Victoria">Victoria</p>
-    <p><input name="restaurant" type="radio" value="Berezka">Berezka</p>
-    <p><input name="restaurant" type="radio" value="Belarus" checked>Belarus</p>
-    <p><input name="restaurant" type="radio" value="Belarus" checked>Belarus</p>
-    <p><input name="restaurant" type="radio" value="Flower" checked>Flower</p>
-    <p><input name="restaurant" type="radio" value="Art" checked>Art</p>
-    <p><input name="restaurant" type="radio" value="Valery" checked>Valery</p>
+<p><b>Choose the restaurant</b></p>
+<form method="POST" action="reservation" modelAttribure="reservationDto">
+    <c:forEach items="${listOfAllRestaurants}" var="elem">
+        <p><input name="restaurant" type="radio" value="${elem.name}"></p>
+    </c:forEach>
 
     <p><b>Choose the date</b></p>
-    <input type="datetime-local" name="dateAndTime" step="1" required>
-
+    <input type="date" id="dateAndTime" name="dateAndTime" value="2020-06-01" min="2020-06-01" max="2020-06-14">
     <p><input type="submit" value="Submit"></p>
 </form>
 </body>

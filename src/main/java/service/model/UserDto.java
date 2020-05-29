@@ -1,6 +1,7 @@
 package service.model;
 
 import dao.entity.Gender;
+import dao.entity.PassportData;
 import lombok.Data;
 import web.validator.PhoneNumberConstraint;
 

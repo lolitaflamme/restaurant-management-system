@@ -3,8 +3,7 @@ package dao.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "reservation")
@@ -12,8 +11,8 @@ import java.time.LocalDateTime;
 public class Reservation extends BaseEntity {
 
 
-    @Column(name = "date_and_time")
-    private LocalDateTime dateAndTime;
+    @Column
+    private LocalDate date;
 
 
     @ManyToOne

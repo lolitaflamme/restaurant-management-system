@@ -8,20 +8,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
-/*@Service
+@Service
 @RequiredArgsConstructor
 public class CustomUserServiceImpl implements UserDetailsService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
-        User loadedUser = repository.findUserByPhoneNumber(phoneNumber)
+        User loadedUser = userRepository.getUserByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new UsernameNotFoundException("Can't find user by provided phone number!"));
         return new org.springframework.security.core.userdetails.User(loadedUser.getPhoneNumber(), loadedUser.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority(loadedUser.getRole().toString())));
     }
-}*/
+}

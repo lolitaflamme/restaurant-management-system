@@ -1,6 +1,5 @@
 package web.controller;
 
-import dao.entity.PassportData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import service.api.UserDtoService;
+import service.api.UserService;
 import service.model.UserDto;
 
 import javax.validation.Valid;
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserDtoService userDtoService;
+    private final UserService userService;
 
     @ModelAttribute(value = "userDto")
     public UserDto addUserToModel() {
@@ -39,7 +38,7 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public String createUser(@Valid UserDto userDto, BindingResult result) {
-        userDtoService.createUser(userDto);
+        userService.createUser(userDto);
         List<FieldError> fieldErrors = result.getFieldErrors();
         if (fieldErrors.isEmpty()) {
             return "redirect:sign-in";
@@ -53,24 +52,29 @@ public class UserController {
         return "sign-in";
     }
 
-    @GetMapping("/user/home")
-    public String getUserHome(/*@AuthenticationPrincipal org.springframework.security.core.userdetails.User user*/) {
+    @GetMapping("/user-home")
+    public String getUserHome(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
         return "user-home";
     }
 
     @ModelAttribute()
-    @GetMapping("/user/additional-information")
+    @GetMapping("/user-additional-information")
     public String getAdditionalInformationForm() {
         return "user-additional-information";
     }
 
-    @PostMapping("/user/additional-information")
-    public String updateUser(@Valid UserDto userDto) {
-        userDtoService.updateUser(userDto);
-        return "user-additional-information";
+    @PostMapping("/user-additional-information")
+    public String updateUser(@Valid UserDto userDto, BindingResult result) {
+        userService.updateUser(userDto);
+        List<FieldError> fieldErrors = result.getFieldErrors();
+        if (fieldErrors.isEmpty()) {
+            return "redirect:user-home";
+        } else {
+            return fieldErrors.toString();
+        }
     }
 
-    @GetMapping("/admin/home")
+    @GetMapping("/admin-home")
     public String getAdminPage() {
         return "admin-home";
     }
